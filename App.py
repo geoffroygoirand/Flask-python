@@ -3,6 +3,12 @@ import pickle
 
 app = Flask(__name__)
 
+def load_model(): 
+    model = "model.py  
+
+    with open(model.py, 'wb') as file:  
+       pickle.dump(model, file)
+
 
 @app.route('/')
 def hello():
