@@ -10,6 +10,20 @@ def hello():
     
 @app.route('/predict',methods=['POST'])
 def predict():
+    if flask.request.method == "POST":
+        if flask.request.files.get("image"):
+            # read the image in PIL format
+            image = flask.request.files["image"].read()
+           
+            preds = model.predict(image)
+            results = imagenet_utils.decode_predictions(preds)
+            data["predictions"] = []
+
+            # indicate that the request was a success
+            data["success"] = True
+
+    # return the data dictionary as a JSON response
+    return flask.jsonify(data)
    
    
 if __name__ == "__main__":
